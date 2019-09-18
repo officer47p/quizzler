@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
@@ -29,9 +30,11 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
+  int rightAnswers = 0;
 
   void questionCheck(bool pickedAnswer) {
     if (quizBrain.getQuestionAnswer() == pickedAnswer) {
+      rightAnswers++;
       scoreKeeper.add(Icon(
         Icons.check,
         color: Colors.green,
@@ -45,9 +48,28 @@ class _QuizPageState extends State<QuizPage> {
 
     if (quizBrain.giveQuestionNumber() >=
         quizBrain.giveNumberOfQuestions() - 1) {
-      setState(() {});
-      scoreKeeper = [];
-      quizBrain.setQuestionNumberToZero();
+      Alert(
+        context: context,
+        type: AlertType.success,
+        title:
+            "Your've Guessed ${rightAnswers} ${rightAnswers > 1 ? "Questions" : "Question"} Correctly Out Of ${quizBrain.getQuestionsNumber()}",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "RETRY",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+            width: 120,
+          )
+        ],
+      ).show().whenComplete(() {
+        setState(() {
+          scoreKeeper = [];
+          rightAnswers = 0;
+          quizBrain.setQuestionNumberToZero();
+        });
+      });
     } else {
       setState(() {
         quizBrain.nextQuestion();

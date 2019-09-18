@@ -56,4 +56,8 @@ class QuizBrain {
   bool getQuestionAnswer() {
     return _questionBank[_questionNumber].questionAnswer;
   }
+
+  int getQuestionsNumber() {
+    return _questionBank.length;
+  }
 }
