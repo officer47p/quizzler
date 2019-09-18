@@ -3,8 +3,8 @@
 It's a simple quiz app with some prepared questions.
 
 ## Screenshots
-![Screenshot 1]("./screenshots/screenshot1.jpg")
-![Screenshot 2]("./screenshots/screenshot2.jpg")
+![Screenshot 1](screenshots/screenshot1.jpg)
+![Screenshot 2](screenshots/screenshot2.jpg)
 
 ## Preparing Dependencies
 
