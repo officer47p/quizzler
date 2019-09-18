@@ -1,4 +1,4 @@
-# I Am Rich
+# Quizzler
 
 It's a simple quiz app with some prepared questions.
 
